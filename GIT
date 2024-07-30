@@ -1,0 +1,147 @@
+
+    
+    local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+    local Window = ArrayField:CreateWindow({
+            Name = "yero | South Bronx",
+            LoadingTitle = "yero Script Hub",
+            LoadingSubtitle = "discord.gg/yero",
+            ConfigurationSaving = {
+                Enabled = true,
+                FolderName = nil, -- Create a custom folder for your hub/game
+                FileName = "yero"
+            },
+            Discord = {
+                Enabled = true,
+                Invite = "yero", -- The Discord invite code, do not include discord.gg/
+                RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+            },
+            KeySystem = false, -- Set this to true to use our key system
+            KeySettings = {
+                Title = "yero",
+                Subtitle = "Key System",
+                Note = "Join the discord (discord.gg/yero)",
+                FileName = "yero Key System",
+                SaveKey = true,
+                GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like ArrayField to get the key from
+                Key = {"yero123"},
+                Actions = {
+                    [1] = {
+                        Text = 'Click here to copy the key link',
+                        OnPress = function()
+                            setclipboard("discord.gg/yero")
+                        end,
+                    }
+                },
+            }
+        })
+    
+
+
+        local MainTab = Window:CreateTab("Silent Aim", nil)
+        
+        
+        
+
+        -- [Main Tab] --
+        
+
+         
+
+        
+        
+        local player = game.Players.LocalPlayer
+        local HitboxEnabled3 = false
+
+        local function adjustHitbox(player)
+            print("Adjusting hitbox for player:", player.Name)
+            if player.Character then
+                local head = player.Character:FindFirstChild("Head")
+                if head then
+                    if HitboxEnabled3 then
+                        pcall(function()
+                            head.Size = Vector3.new(2.3, 2.3, 2.3)
+                            head.Transparency = 0.9
+                            head.BrickColor = BrickColor.new("Glass")
+                            head.Material = "Glass"
+                            head.CanCollide = false
+                        end)
+                    else
+                        pcall(function()
+                            head.Size = Vector3.new(0, 0, 0)
+                            head.Transparency = 0
+                            head.BrickColor = BrickColor.new("Glass")
+                            head.Material = "Glass"
+                            head.CanCollide = true
+                        end)
+                    end
+                end
+            end
+        end
+
+        local function applyHitboxStateToAllPlayers3()
+            for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+                if otherPlayer ~= player then
+                    adjustHitbox(otherPlayer)
+                end
+            end
+        end
+
+    
+        local function onPlayerAdded(player)
+            print("Player added:", player.Name)
+            player.CharacterAdded:Connect(function(character)
+                wait(1) 
+                adjustHitbox(player)
+            end)
+        end
+
+        local function onPlayerRespawn(player)
+            print("Player respawned:", player.Name)
+            player.CharacterAdded:Connect(function(character)
+                character:WaitForChild("Humanoid").Died:Connect(function()
+                    wait(35)
+                    adjustHitbox(player)
+                end)
+            end)
+        end
+
+        
+        applyHitboxStateToAllPlayers3()
+
+        
+        game.Players.PlayerAdded:Connect(onPlayerAdded)
+        print("Player added event connected")
+
+        game.Players.PlayerAdded:Connect(function(player)
+            onPlayerAdded(player)
+            player.CharacterAdded:Connect(function(character)
+                wait(1) 
+                adjustHitbox(player)
+            end)
+        end)
+        print("Player added and respawn events connected")
+
+    
+        
+
+
+        
+        
+
+
+        
+
+
+
+
+        local Toggle = MainTab:CreateToggle({
+            Name = "Silent Aim (TESTING)",
+            CurrentValue = false,
+            Flag = "semiLegit", 
+            Callback = function(Value)
+                HitboxEnabled3 = Value 
+                applyHitboxStateToAllPlayers3() 
+            end,
+        })
+
+
