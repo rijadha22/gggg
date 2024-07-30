@@ -2,9 +2,9 @@
     
     local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
     local Window = ArrayField:CreateWindow({
-            Name = "yero | South Bronx",
-            LoadingTitle = "yero Script Hub",
-            LoadingSubtitle = "discord.gg/yero",
+            Name = "Silent Aim Works When You Have AimLock On",
+            LoadingTitle = "Ye",
+            LoadingSubtitle = "discord.gg/beamscript",
             ConfigurationSaving = {
                 Enabled = true,
                 FolderName = nil, -- Create a custom folder for your hub/game
