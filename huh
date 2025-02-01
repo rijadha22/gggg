@@ -1,6 +1,6 @@
 
     
-    local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+----.local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
     local Window = ArrayField:CreateWindow({
             Name = "Silent Aim Works When You Have AimLock On",
             LoadingTitle = "Ye",
